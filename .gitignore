@@ -1,0 +1,19 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+
+#Env files
+
+.env
+
+# WhatsApp Chromium session folder
+wp-session/
+credentials.json
