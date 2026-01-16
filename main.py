@@ -6,6 +6,7 @@ from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
 import pywhatkit
+import pyautogui, time
 
 
 def main():
@@ -37,14 +38,17 @@ def main():
         return folder["webViewLink"]
 
     def send_msg(link):
+        time.sleep(10)
         pywhatkit.sendwhatmsg_instantly(
             phone_no=CR_PHONE,
             message=link,
             wait_time=10,
             tab_close=True,
             close_time=3,
-            press_enter=True
         )
+        
+        time.sleep(2)
+        pyautogui.press('enter')
 
     folder_link = create_folder(datetime.today().strftime("%Y-%m-%d"), PARENT_ID)
     send_msg(folder_link)
