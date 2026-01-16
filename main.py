@@ -38,7 +38,12 @@ def main():
 
     def send_msg(link):
         pywhatkit.sendwhatmsg_instantly(
-            phone_no=CR_PHONE, message=link, wait_time=10, tab_close=True, close_time=3
+            phone_no=CR_PHONE,
+            message=link,
+            wait_time=10,
+            tab_close=True,
+            close_time=3,
+            press_enter=True
         )
 
     folder_link = create_folder(datetime.today().strftime("%Y-%m-%d"), PARENT_ID)
