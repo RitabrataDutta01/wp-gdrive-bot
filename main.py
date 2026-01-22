@@ -8,7 +8,6 @@ from googleapiclient.discovery import build
 import pywhatkit
 import pyautogui, time
 
-
 def main():
     load_dotenv()
 
@@ -22,6 +21,19 @@ def main():
     )
 
     service = build("drive", "v3", credentials=creds)
+    
+    
+    def seteditorPerms(service, folder_id):
+    
+        permission = {
+            "type" : "anyone",
+            "role" : "writer"
+        }
+    
+        service.permissions().create(
+            fileId = folder_id,
+            body = permission
+        ).execute()
 
     def create_folder(name, parent_id):
         file_metadata = {
@@ -34,6 +46,10 @@ def main():
             .create(body=file_metadata, fields="id, webViewLink")
             .execute()
         )
+        
+        folder_id = folder["id"]
+        seteditorPerms(service, folder_id)
+        
         print(f"Folder {name} has been created successfully with ID: {folder['id']}")
         return folder["webViewLink"]
 
